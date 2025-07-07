@@ -1,0 +1,29 @@
+# Compilación
+target/
+*.class
+
+# Logs
+*.log
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+out/
+
+# Maven
+dependency-reduced-pom.xml
+release.properties
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Configuración del entorno local
+*.env
+*.local
+*.tmp
+
+# Otros
+.vscode/
+*.swp

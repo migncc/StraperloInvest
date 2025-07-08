@@ -8,14 +8,15 @@ public class Stock extends Asset {
     private double netDebt;
     private double ebitda;
     private double per;
-    private AnalystRating analystRating;
+    private String analystRating;
+
 
     public Stock(String name, String ticker, String isin,
                  double amount, String sector, String country, RiskLevel riskLevel,
                  double currentPrice, double historicalMaxPrice5Y,
                  double marketCap, double enterpriseValue,
                  double netDebt, double ebitda, double per,
-                 AnalystRating analystRating) {
+                 String analystRating) {
 
         super(name, ticker, isin, AssetType.STOCK, amount, sector, country, riskLevel);
         this.currentPrice = currentPrice;
@@ -35,7 +36,14 @@ public class Stock extends Asset {
     public double getNetDebt() { return netDebt; }
     public double getEbitda() { return ebitda; }
     public double getPer() { return per; }
-    public AnalystRating getAnalystRating() { return analystRating; }
+    public String getAnalystRatingRaw() {
+        return analystRating;
+    }
+
+    public void setAnalystRating(String analystRating) {
+        this.analystRating = analystRating;
+    }
+
 
     public void setCurrentPrice(double currentPrice) {
         this.currentPrice = currentPrice;
@@ -63,9 +71,5 @@ public class Stock extends Asset {
 
     public void setPer(double per) {
         this.per = per;
-    }
-
-    public void setAnalystRating(AnalystRating analystRating) {
-        this.analystRating = analystRating;
     }
 }

@@ -11,21 +11,21 @@ public class Main {
         Stock ideal = new Stock(
                 "Ideal Corp", "IDL", "US0000000001",
                 10_000.0, "TECHNOLOGY", "EE.UU", RiskLevel.LOW,
-                150.0, 180.0,   // ✅ debajo del máximo
-                500_000_000.0, 450_000_000.0,  // ✅ cap > EV
-                50_000_000.0, 80_000_000.0,     // ✅ ratio deuda/ebitda = 0.625
-                17.0,   // ✅ PER aceptable para tech
-                AnalystRating.BUY   // ✅ señal positiva
+                150.0, 180.0,
+                500_000_000.0, 450_000_000.0,
+                50_000_000.0, 80_000_000.0,
+                17.0,
+                "BUY"
         );
 
         Stock sobrevalorada = new Stock(
                 "Riesgolandia S.A.", "RGL", "US0000000002",
                 8_000.0, "FINANCIAL", "Alemania", RiskLevel.HIGH,
-                75.0, 70.0,   // ❌ en máximos
-                300_000_000.0, 450_000_000.0,  // ❌ cap < EV
-                120_000_000.0, 30_000_000.0,   // ❌ deuda/ebitda = 4.0
-                42.0,   // ❌ PER altísimo
-                AnalystRating.SELL   // ❌
+                75.0, 70.0,
+                300_000_000.0, 450_000_000.0,
+                120_000_000.0, 30_000_000.0,
+                42.0,
+                "SELL"
         );
 
         Stock mixta = new Stock(
@@ -35,7 +35,7 @@ public class Main {
                 200_000_000.0, 200_000_000.0,
                 40_000_000.0, 40_000_000.0,
                 24.0,
-                AnalystRating.HOLD
+                "HOLD"
         );
 
         Stock sinEbitda = new Stock(
@@ -45,7 +45,7 @@ public class Main {
                 100_000_000.0, 90_000_000.0,
                 20_000_000.0, 0.0,
                 19.5,
-                AnalystRating.BUY
+                "BUY"
         );
 
         List<Stock> stocks = List.of(ideal, sobrevalorada, mixta, sinEbitda);

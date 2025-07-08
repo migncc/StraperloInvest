@@ -6,6 +6,13 @@ public class ScoreTable {
     private static final Map<String, List<ScoreRange>> table = new HashMap<>();
 
     static {
+        table.put("GENERIC_PER", List.of(
+                new ScoreRange(0, 15, 1.0),
+                new ScoreRange(15, 20, 0.75),
+                new ScoreRange(20, 25, 0.5),
+                new ScoreRange(25, 30, 0.25),
+                new ScoreRange(30, Double.MAX_VALUE, 0.0)
+        ));
         // PER por sector
         table.put("TECHNOLOGY_PER", List.of(
                 new ScoreRange(0, 20, 1.0),

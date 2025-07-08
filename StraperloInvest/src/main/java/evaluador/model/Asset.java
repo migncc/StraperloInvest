@@ -16,7 +16,8 @@ public abstract class Asset {
                  RiskLevel riskLevel) {
         this.name = name;
         this.ticker = ticker;
-        this.isin = isin;
+        this.isin = (isin == null || isin.trim().isEmpty() || isin.equalsIgnoreCase("N/A"))
+                ? null : isin;
         this.type = type;
         this.amount = amount;
         this.sector = sector;
@@ -94,11 +95,12 @@ public abstract class Asset {
     @Override
     public String toString() {
         return "Activo: " + name + " (" + ticker + ")" +
-                "\nISIN: " + isin +
+                "\nISIN: " + (isin != null ? isin : "No disponible") +
                 "\nTipo: " + type +
                 "\nImporte: " + String.format("€%,.2f", amount) +
-                "\nSector: " + (sector != null ? sector : "Desconocido") +
-                "\nPaís: " + (country != null ? country : "Desconocido") +
-                "\nRiesgo estimado: " + (riskLevel != null ? riskLevel : "No evaluado") + "\n";
+                "\nSector: " + sector +
+                "\nPaís: " + country +
+                "\nRiesgo estimado: " + riskLevel + "\n";
     }
+
 }

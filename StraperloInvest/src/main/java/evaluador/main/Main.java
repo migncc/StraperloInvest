@@ -1,75 +1,17 @@
 package evaluador.main;
 
-import evaluador.model.*;
+import evaluador.api.ApiClient;
+import evaluador.api.StockEvaluationService;
 import evaluador.logic.StockEvaluator;
-import evaluador.logic.PortfolioEvaluator;
-
-import java.util.List;
+import evaluador.logic.StockFactory;
+import evaluador.model.EvaluationResult;
+import evaluador.model.Stock;
+import org.json.JSONObject;
 
 public class Main {
     public static void main(String[] args) {
-        Stock ideal = new Stock(
-                "Ideal Corp", "IDL", "US0000000001",
-                10_000.0, "TECHNOLOGY", "EE.UU", RiskLevel.LOW,
-                150.0, 180.0,
-                500_000_000.0, 450_000_000.0,
-                50_000_000.0, 80_000_000.0,
-                17.0,
-                "BUY"
-        );
-
-        Stock sobrevalorada = new Stock(
-                "Riesgolandia S.A.", "RGL", "US0000000002",
-                8_000.0, "FINANCIAL", "Alemania", RiskLevel.HIGH,
-                75.0, 70.0,
-                300_000_000.0, 450_000_000.0,
-                120_000_000.0, 30_000_000.0,
-                42.0,
-                "SELL"
-        );
-
-        Stock mixta = new Stock(
-                "Equilibrada Ltd", "EQB", "US0000000003",
-                12_500.0, "HEALTHCARE", "Francia", RiskLevel.MEDIUM,
-                120.0, 130.0,
-                200_000_000.0, 200_000_000.0,
-                40_000_000.0, 40_000_000.0,
-                24.0,
-                "HOLD"
-        );
-
-        Stock sinEbitda = new Stock(
-                "StartupX", "STX", "US0000000004",
-                6_000.0, "TECHNOLOGY", "China", RiskLevel.HIGH,
-                10.0, 20.0,
-                100_000_000.0, 90_000_000.0,
-                20_000_000.0, 0.0,
-                19.5,
-                "BUY"
-        );
-
-        List<Stock> stocks = List.of(ideal, sobrevalorada, mixta, sinEbitda);
-        StockEvaluator evaluator = new StockEvaluator();
-
-        System.out.println("📈 ANÁLISIS DE ACCIONES INDIVIDUALES\n");
-
-        for (Stock stock : stocks) {
-            System.out.println("─────────────────────────────");
-            System.out.println(stock);
-            EvaluationResult result = evaluator.evaluate(stock);
-            System.out.println("📊 Evaluación:\n" + result);
-            System.out.printf("📈 Nota final: %.2f / 10.00%n%n", result.getFinalScore());
-        }
-
-        System.out.println("\n📁 RESUMEN DE CARTERA\n");
-
-        Portfolio portfolio = new Portfolio();
-        stocks.forEach(portfolio::addAsset);
-
-        System.out.println(portfolio);
-        System.out.println();
-
-        PortfolioEvaluator peval = new PortfolioEvaluator();
-        peval.printPortfolioSummary(portfolio);
+        StockEvaluationService.evaluarTicker("MSFT");
+        StockEvaluationService.evaluarTicker("AAPL");
+        StockEvaluationService.evaluarTicker("VXUS"); // ETF de prueba
     }
 }

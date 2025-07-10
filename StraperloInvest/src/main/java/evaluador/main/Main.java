@@ -10,8 +10,11 @@ import org.json.JSONObject;
 
 public class Main {
     public static void main(String[] args) {
-        StockEvaluationService.evaluarTicker("MSFT");
-        StockEvaluationService.evaluarTicker("AAPL");
-        StockEvaluationService.evaluarTicker("VXUS"); // ETF de prueba
+//        StockEvaluationService.evaluarTicker("MSFT");
+//        StockEvaluationService.evaluarTicker("AAPL");
+        StockEvaluationService.evaluarTicker("MOH");
+        StockEvaluationService.evaluarTicker("BABA");
+        StockEvaluationService.evaluarTicker("BYDDF");
+
     }
 }

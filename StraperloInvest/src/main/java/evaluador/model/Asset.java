@@ -4,21 +4,18 @@ public abstract class Asset {
     protected String name;
     protected String ticker;
     protected String isin;
-    protected AssetType type;
     protected double amount; // € invertidos
     protected String sector;
     protected String country;
     protected RiskLevel riskLevel;
 
-    public Asset(String name, String ticker, String isin,
-                 AssetType type, double amount,
+    public Asset(String name, String ticker, String isin, double amount,
                  String sector, String country,
                  RiskLevel riskLevel) {
         this.name = name;
         this.ticker = ticker;
         this.isin = (isin == null || isin.trim().isEmpty() || isin.equalsIgnoreCase("N/A"))
                 ? null : isin;
-        this.type = type;
         this.amount = amount;
         this.sector = sector;
         this.country = country;
@@ -38,9 +35,6 @@ public abstract class Asset {
         return isin;
     }
 
-    public AssetType getType() {
-        return type;
-    }
 
     public double getAmount() {
         return amount;
@@ -71,10 +65,6 @@ public abstract class Asset {
         this.isin = isin;
     }
 
-    public void setType(AssetType type) {
-        this.type = type;
-    }
-
     public void setAmount(double amount) {
         this.amount = amount;
     }
@@ -96,7 +86,6 @@ public abstract class Asset {
     public String toString() {
         return "Activo: " + name + " (" + ticker + ")" +
                 "\nISIN: " + (isin != null ? isin : "No disponible") +
-                "\nTipo: " + type +
                 "\nImporte: " + String.format("€%,.2f", amount) +
                 "\nSector: " + sector +
                 "\nPaís: " + country +

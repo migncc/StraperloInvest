@@ -1,12 +1,16 @@
 package evaluador.logic;
 
 import evaluador.model.*;
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StockFactory {
 
     public static Stock fromJson(JSONObject json) {
-        // Extraemos los campos con validación básica
+        // Campos básicos
         String name = json.optString("name", "Unknown");
         String ticker = json.optString("ticker", "N/A");
         String isin = json.optString("isin", "N/A");
@@ -21,19 +25,30 @@ public class StockFactory {
         double netDebt = json.optDouble("netDebt", 0.0);
         double ebitda = json.optDouble("ebitda", 0.0);
         double per = json.optDouble("per", 0.0);
+        System.out.println("PER crudo recibido: " + per);
+
 
         String ratingStr = json.optString("analystRating", "NONE");
+
+        // Preparamos la lista de históricos
+        List<Double> historicalPrices = new ArrayList<>();
+        JSONArray historicalArray = json.optJSONArray("historicalPrices");
+        if (historicalArray != null) {
+            for (int i = 0; i < historicalArray.length(); i++) {
+                historicalPrices.add(historicalArray.optDouble(i, 0.0));
+            }
+        }
 
         // Carga neutra (no se está comprando todavía)
         double amount = 0.0;
 
         return new Stock(
                 name, ticker, isin,
-                amount, sector, country, RiskLevel.MEDIUM, // riesgo neutro
+                amount, sector, country, RiskLevel.MEDIUM,
                 currentPrice, maxPrice5Y,
                 marketCap, enterpriseValue,
                 netDebt, ebitda, per,
-                ratingStr
+                ratingStr, historicalPrices
         );
     }
 }
